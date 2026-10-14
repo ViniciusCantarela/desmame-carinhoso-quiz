@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Desmame Carinhoso · Descubra por onde começar</title>
+<meta name="description" content="Responda 6 perguntas e descubra o ponto de partida do desmame do seu filho. Guia prático para parar de amamentar aos poucos, com calma e carinho.">
+<meta property="og:title" content="Desmame Carinhoso · Por onde começar o desmame?">
+<meta property="og:description" content="6 perguntas, 1 minuto. Descubra o seu ponto de partida.">
+<meta name="theme-color" content="#F6DCCD">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,500&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FBF6F0;--paper:#FFFDFA;--ink:#3B2F2B;--soft:#6E5E57;--mute:#9A847A;
+  --terra:#C2714F;--terra-d:#A65A3B;--blush:#F4DED2;--blush-l:#FAEDE6;
+  --sage:#8BA386;--sage-l:#E6EEE3;--sun:#E9B44C;--night:#4A5677;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Lora",Georgia,serif;color:var(--ink);background:var(--cream);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--terra-d)}
+.wrap{max-width:640px;margin:0 auto;padding:0 20px}
+.sans{font-family:"Poppins",system-ui,sans-serif}
+button{font:inherit;cursor:pointer}
+
+/* topo */
+.top{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+.brand{display:flex;align-items:center;gap:10px;font-family:"Poppins";font-weight:600;font-size:15px;color:var(--terra-d);text-decoration:none}
+.brand svg{width:38px;height:38px;border-radius:50%}
+.skip{font-family:"Poppins";font-size:13px;font-weight:500;color:var(--soft);text-decoration:none;border-bottom:1px solid var(--blush)}
+
+/* tela inicial */
+.hero{background:linear-gradient(170deg,#FBEDE4 0%,#F6DCCD 60%,#EFCDBB 100%);padding-bottom:48px}
+.hero .art{display:block;margin:12px auto 8px;width:220px;height:220px}
+.kicker{font-family:"Poppins";font-weight:600;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--terra-d);text-align:center;margin:0 0 10px}
+h1{font-family:"Lora";font-weight:700;font-size:34px;line-height:1.15;text-align:center;margin:0 0 14px}
+h1 em{font-style:italic;font-weight:500;color:var(--terra)}
+.lead{text-align:center;color:var(--soft);margin:0 auto 26px;max-width:480px}
+.btn{display:block;width:100%;border:0;border-radius:999px;background:var(--terra);color:#fff;font-family:"Poppins";font-weight:600;font-size:17px;padding:18px 24px;text-align:center;text-decoration:none;box-shadow:0 8px 20px rgba(166,90,59,.25);transition:transform .15s,background .15s}
+.btn:hover{background:var(--terra-d)} .btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--terra-d);box-shadow:none;border:2px solid var(--terra)}
+.meta{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;margin-top:16px;font-family:"Poppins";font-size:13px;color:var(--soft)}
+.meta span{white-space:nowrap}
+.meta span::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--sage);margin-right:7px;vertical-align:middle}
+
+/* quiz */
+#quiz{display:none;min-height:100vh;background:var(--cream)}
+.bar{height:6px;background:var(--blush);border-radius:6px;overflow:hidden;margin:6px 0 26px}
+.bar i{display:block;height:100%;width:0;background:var(--terra);transition:width .3s}
+.step{font-family:"Poppins";font-size:13px;font-weight:500;color:var(--mute)}
+.q h2{font-family:"Lora";font-weight:700;font-size:27px;line-height:1.2;margin:6px 0 8px}
+.q .hint{font-family:"Poppins";font-size:14px;color:var(--soft);margin:0 0 20px}
+.opts{display:grid;gap:12px}
+.opt{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--paper);border:2px solid var(--blush);border-radius:18px;padding:16px 18px;font-family:"Poppins";font-size:16px;color:var(--ink);transition:border-color .15s,background .15s}
+.opt:hover{border-color:#E7B9A2}
+.opt .dot{flex:0 0 22px;height:22px;border-radius:50%;border:2px solid #D9B6A4;background:#fff}
+.opt.multi .dot{border-radius:7px}
+.opt.sel{border-color:var(--terra);background:var(--blush-l)}
+.opt.sel .dot{background:var(--terra);border-color:var(--terra);box-shadow:inset 0 0 0 4px #fff}
+.nav{display:flex;gap:12px;margin-top:22px}
+.back{background:none;border:0;font-family:"Poppins";font-size:14px;color:var(--soft);padding:10px 4px}
+.next{flex:1}
+.next[disabled]{opacity:.45;pointer-events:none}
+
+/* carregando */
+#loading{display:none;min-height:70vh;text-align:center;padding-top:20vh}
+.spin{width:54px;height:54px;border-radius:50%;border:5px solid var(--blush);border-top-color:var(--terra);margin:0 auto 20px;animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* resultado */
+#result{display:none}
+.res-head{background:linear-gradient(170deg,#FBEDE4 0%,#F6DCCD 100%);padding:28px 0 34px}
+.res-tag{display:inline-block;background:var(--sage-l);color:#5C7458;font-family:"Poppins";font-weight:600;font-size:12px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:999px}
+.res-head h2{font-family:"Lora";font-weight:700;font-size:30px;line-height:1.15;margin:14px 0 10px}
+.res-head h2 em{font-style:italic;color:var(--terra);font-weight:500}
+.cards{display:grid;gap:14px;margin:22px 0}
+.card{background:var(--paper);border:2px solid var(--blush);border-radius:22px;padding:20px 22px}
+.card .lbl{font-family:"Poppins";font-weight:600;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--terra-d);margin-bottom:6px}
+.card .big{font-family:"Lora";font-weight:700;font-size:26px;line-height:1.2}
+.card p{margin:6px 0 0;font-size:16px;color:var(--soft)}
+.meter{display:flex;gap:6px;margin-top:10px}
+.meter i{flex:1;height:10px;border-radius:5px;background:var(--blush)}
+.meter i.on{background:var(--sage)}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:s;position:relative;padding-left:46px;margin-bottom:14px;font-size:17px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;background:var(--blush);color:var(--terra-d);font-family:"Poppins";font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center}
+.note{background:#FFF8F4;border-left:5px solid var(--terra);border-radius:0 16px 16px 0;padding:14px 18px;font-size:15px;color:var(--soft);margin:18px 0}
+
+/* oferta */
+section.block{padding:40px 0}
+section.alt{background:var(--paper)}
+.h3{font-family:"Lora";font-weight:700;font-size:28px;line-height:1.2;margin:0 0 14px}
+.h3 em{font-style:italic;font-weight:500;color:var(--terra)}
+.chap{display:grid;gap:10px;margin:18px 0}
+.chap div{display:flex;gap:14px;align-items:flex-start;background:var(--cream);border-radius:16px;padding:14px 16px;font-size:16px}
+.chap b{flex:0 0 34px;height:34px;border-radius:50%;background:var(--terra);color:#fff;font-family:"Poppins";font-size:15px;display:flex;align-items:center;justify-content:center}
+.chap span strong{display:block;font-family:"Poppins";font-weight:600;font-size:15px;color:var(--ink)}
+.chap span{color:var(--soft)}
+.ticks{list-style:none;padding:0;margin:14px 0}
+.ticks li{position:relative;padding-left:34px;margin-bottom:10px}
+.ticks li::before{content:"";position:absolute;left:0;top:6px;width:20px;height:20px;border-radius:6px;background:var(--sage-l);box-shadow:inset 0 0 0 2px var(--sage)}
+.ticks li::after{content:"";position:absolute;left:6px;top:10px;width:8px;height:5px;border-left:2px solid #5C7458;border-bottom:2px solid #5C7458;transform:rotate(-45deg)}
+.price-box{background:linear-gradient(170deg,#FBEDE4,#F6DCCD);border-radius:28px;padding:28px 24px;text-align:center;border:2px solid #EBC4B0}
+.price-box .cover{width:120px;margin:0 auto 14px;display:block;border-radius:10px;box-shadow:0 10px 24px rgba(59,47,43,.18)}
+.price-box .old{font-family:"Poppins";font-size:14px;color:var(--soft)}
+.price{font-family:"Lora";font-weight:700;font-size:52px;line-height:1;margin:6px 0 4px;color:var(--ink)}
+.price small{font-size:22px}
+.price-box .sub{font-family:"Poppins";font-size:14px;color:var(--soft);margin-bottom:18px}
+.guarantee{display:flex;gap:16px;align-items:center;background:var(--sage-l);border-radius:22px;padding:18px 20px;margin-top:18px;text-align:left}
+.guarantee .seal{flex:0 0 76px;height:76px;border-radius:50%;background:var(--sage);color:#fff;font-family:"Poppins";font-weight:700;font-size:12px;line-height:1.15;padding:6px;display:flex;align-items:center;justify-content:center;text-align:center}
+.guarantee p{margin:0;font-size:15px;color:#46583F}
+.pay{font-family:"Poppins";font-size:12px;color:var(--mute);margin-top:12px}
+details{background:var(--paper);border:2px solid var(--blush);border-radius:18px;padding:16px 18px;margin-bottom:10px}
+summary{font-family:"Poppins";font-weight:600;font-size:16px;cursor:pointer;list-style:none;position:relative;padding-right:28px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:0;top:-2px;font-size:22px;color:var(--terra)}
+details[open] summary::after{content:"–"}
+details p{margin:10px 0 0;font-size:16px;color:var(--soft)}
+footer{padding:30px 0 50px;font-family:"Poppins";font-size:12px;color:var(--mute);line-height:1.6}
+footer a{color:var(--mute)}
+.sticky{position:fixed;left:0;right:0;bottom:0;padding:12px 20px calc(12px + env(safe-area-inset-bottom));background:rgba(251,246,240,.96);backdrop-filter:blur(6px);border-top:1px solid var(--blush);transform:translateY(110%);transition:transform .3s;z-index:20}
+.sticky.show{transform:none}
+.sticky .wrap{display:flex;align-items:center;gap:14px;padding:0}
+.sticky .p{font-family:"Lora";font-weight:700;font-size:22px;white-space:nowrap}
+.sticky .btn{padding:14px 18px;font-size:15px}
+.fade{animation:fd .35s ease}
+@keyframes fd{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (min-width:700px){h1{font-size:42px}.res-head h2{font-size:36px}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="art" viewBox="0 0 1080 1080">
+    <circle cx="540" cy="540" r="440" fill="#FFF7F1" opacity=".85"/>
+    <circle cx="540" cy="540" r="400" fill="none" stroke="#E2AE95" stroke-width="5" stroke-dasharray="3 20" stroke-linecap="round"/>
+    <g transform="translate(540 575) scale(1.22) translate(-540 -560)">
+      <path d="M250 780 C285 690 380 675 440 712 C395 780 315 805 250 780Z" fill="#8BA386"/>
+      <path d="M830 780 C795 690 700 675 640 712 C685 780 765 805 830 780Z" fill="#8BA386"/>
+      <circle cx="470" cy="360" r="88" fill="#C2714F"/>
+      <path d="M300 790 C300 560 375 465 470 465 C575 465 650 545 668 640 L668 790 Z" fill="#C2714F"/>
+      <circle cx="635" cy="540" r="68" fill="#E9B44C"/>
+      <path d="M540 765 C540 655 578 618 635 618 C700 618 728 664 728 730 L728 765 Z" fill="#E9B44C"/>
+      <path d="M405 705 C470 790 645 800 728 718" fill="none" stroke="#A65A3B" stroke-width="34" stroke-linecap="round"/>
+      <path d="M330 800 L750 800" stroke="#E2AE95" stroke-width="6" stroke-linecap="round"/>
+    </g>
+  </symbol>
+</svg>
+
+<!-- ================= INÍCIO ================= -->
+<div id="start" class="hero">
+  <div class="wrap">
+    <div class="top">
+      <a class="brand" href="#"><svg viewBox="0 0 1080 1080" style="background:#F6DCCD"><use href="#art"/></svg>Desmame Carinhoso</a>
+      <a class="skip" href="#oferta" onclick="showOfferOnly()">Já quero o guia</a>
+    </div>
+    <svg class="art fade" viewBox="0 0 1080 1080"><use href="#art"/></svg>
+    <p class="kicker">Quiz gratuito · 1 minuto</p>
+    <h1>Descubra <em>por onde começar</em> o desmame do seu filho</h1>
+    <p class="lead">Responda 6 perguntas rápidas e veja o seu ponto de partida, o tempo estimado e os primeiros passos para parar de amamentar aos poucos, com calma e carinho.</p>
+    <button class="btn" onclick="startQuiz()">Começar o quiz</button>
+    <div class="meta"><span>6 perguntas</span><span>Sem cadastro</span><span>Resultado na hora</span></div>
+  </div>
+</div>
+
+<!-- ================= QUIZ ================= -->
+<div id="quiz">
+  <div class="wrap">
+    <div class="top">
+      <a class="brand" href="#" onclick="location.reload()"><svg viewBox="0 0 1080 1080" style="background:#F6DCCD"><use href="#art"/></svg>Desmame Carinhoso</a>
+      <span class="step" id="stepLbl">1 de 6</span>
+    </div>
+    <div class="bar"><i id="barFill"></i></div>
+    <div id="qBox"></div>
+  </div>
+</div>
+
+<div id="loading"><div class="wrap"><div class="spin"></div><p class="sans" style="color:var(--soft)">Montando o seu ponto de partida…</p></div></div>
+
+<!-- ================= RESULTADO + OFERTA ================= -->
+<div id="result">
+  <div class="res-head">
+    <div class="wrap fade">
+      <div class="top" style="padding-top:0">
+        <a class="brand" href="#" onclick="location.reload()"><svg viewBox="0 0 1080 1080" style="background:#F6DCCD"><use href="#art"/></svg>Desmame Carinhoso</a>
+        <a class="skip" href="#" onclick="location.reload();return false">Refazer</a>
+      </div>
+      <span class="res-tag">Seu resultado</span>
+      <h2 id="rTitle"></h2>
+      <p id="rIntro" style="margin:0;color:var(--soft)"></p>
+      <div class="cards">
+        <div class="card"><div class="lbl">Sinais que você já vê</div><div class="big" id="rSignsBig"></div><div class="meter" id="rMeter"></div><p id="rSignsTxt"></p></div>
+        <div class="card"><div class="lbl">Tempo estimado</div><div class="big" id="rTime"></div><p>No ritmo indicado pela Sociedade Brasileira de Pediatria: uma mamada a menos a cada 1 ou 2 semanas.</p></div>
+        <div class="card"><div class="lbl">Seus primeiros passos</div><ol class="steps" id="rSteps"></ol></div>
+      </div>
+      <div class="note" id="rNote" style="display:none"></div>
+      <p style="font-size:16px;margin:0 0 18px">O passo a passo completo para o seu caso, com o plano semana a semana, está no guia <strong>Desmame Carinhoso</strong>.</p>
+      <a class="btn" href="#oferta">Ver o guia completo</a>
+    </div>
+  </div>
+
+  <div id="oferta"></div>
+  <section class="block alt">
+    <div class="wrap">
+      <h3 class="h3">Um guia para parar de amamentar <em>sem pressa e sem susto</em></h3>
+      <p>O <strong>Desmame Carinhoso</strong> é um guia prático, curto e em linguagem simples, feito para usar no dia a dia. Cada capítulo termina com uma tarefa fácil.</p>
+      <div class="chap">
+        <div><b>1</b><span><strong>Parar de mamar não é falta de amor</strong>Os jeitos de parar e os 9 sinais de que é a hora</span></div>
+        <div><b>2</b><span><strong>O plano aos poucos</strong>Os 4 passos para tirar uma mamada de cada vez</span></div>
+        <div><b>3</b><span><strong>Parar de mamar à noite</strong>O combinado do sol e o que fazer de madrugada</span></div>
+        <div><b>4</b><span><strong>O que falar quando ele chora</strong>Frases prontas para cada idade e o que evitar</span></div>
+        <div><b>5</b><span><strong>O seu corpo e os seus sentimentos</strong>Cuidados com os seios e sinais de alerta</span></div>
+        <div><b>6</b><span><strong>A comida depois do peito</strong>Alimentação, volta ao trabalho e casos especiais</span></div>
+      </div>
+      <p style="font-size:16px;color:var(--soft)">+ folhas para preencher: anotação das mamadas, rotina de dormir e perguntas para o pediatra.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <h3 class="h3">É para você se…</h3>
+      <ul class="ticks">
+        <li>Seu filho tem 18 meses ou mais e você quer parar de amamentar</li>
+        <li>Você tem medo de fazer ele sofrer ou de sofrer junto</li>
+        <li>As noites estão pesadas e você precisa descansar</li>
+        <li>Você quer um plano claro, e não dicas soltas da internet</li>
+      </ul>
+      <p style="font-size:15px;color:var(--soft)">Seu filho é mais novo e você decidiu ou precisa parar? Essa decisão é sua e merece respeito. O guia também pode ajudar, junto com a orientação do pediatra.</p>
+    </div>
+  </section>
+
+  <section class="block alt" id="comprar">
+    <div class="wrap">
+      <div class="price-box">
+        <svg class="cover" viewBox="0 0 1600 2560" aria-label="Capa do guia">
+          <defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBEDE4"/><stop offset="1" stop-color="#EFCDBB"/></linearGradient></defs>
+          <rect width="1600" height="2560" fill="url(#cg)"/>
+          <svg x="300" y="250" width="1000" height="1000" viewBox="0 0 1080 1080"><use href="#art"/></svg>
+          <text x="800" y="1600" text-anchor="middle" font-family="Lora" font-weight="700" font-size="190" fill="#3B2F2B">Desmame</text>
+          <text x="800" y="1800" text-anchor="middle" font-family="Lora" font-style="italic" font-weight="500" font-size="190" fill="#C2714F">Carinhoso</text>
+        </svg>
+        <div class="old">Guia digital em PDF · acesso imediato</div>
+        <div class="price"><small>R$</small> 27,90</div>
+        <div class="sub">pagamento único · Pix ou cartão</div>
+        <a class="btn" id="buyBtn" href="#" onclick="goCheckout(event)">Quero o guia agora</a>
+        <div class="guarantee">
+          <div class="seal">7 dias de garantia</div>
+          <p>Se o guia não for para você, peça o reembolso em até 7 dias após a compra e receba 100% do valor de volta.</p>
+        </div>
+        <div class="pay">Pagamento seguro processado pela Lastlink</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <h3 class="h3">Perguntas frequentes</h3>
+      <details><summary>Como recebo o guia?</summary><p>Logo após a confirmação do pagamento, você recebe o acesso ao PDF por e-mail. Pode ler no celular, no computador ou imprimir.</p></details>
+      <details><summary>Serve para criança com menos de 18 meses?</summary><p>O foco do guia é a partir de 18 meses. Se seu filho é mais novo e você decidiu ou precisa parar, as orientações também podem ajudar, junto com o acompanhamento do pediatra.</p></details>
+      <details><summary>Quanto tempo leva o desmame?</summary><p>Depende de quantas vezes seu filho mama hoje. No ritmo de uma mamada a menos a cada 1 ou 2 semanas, uma criança que mama 4 vezes por dia pode levar de 1 a 2 meses. O guia mostra como ajustar o ritmo.</p></details>
+      <details><summary>O guia substitui o pediatra?</summary><p>Não. É um material educativo, baseado nas orientações do Ministério da Saúde, da Sociedade Brasileira de Pediatria e da OMS. Para situações de saúde específicas, converse com um profissional.</p></details>
+      <details><summary>E se eu não gostar?</summary><p>Você tem 7 dias de garantia. Se o guia não for para você, peça o reembolso e receba o valor de volta.</p></details>
+      <div style="margin-top:22px"><a class="btn" href="#comprar">Quero o guia por R$ 27,90</a></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p>Este quiz e o guia são materiais educativos e não substituem a consulta com o pediatra ou outro profissional de saúde. O resultado do quiz é um ponto de partida, não um diagnóstico.</p>
+      <p>Fontes: Sociedade Brasileira de Pediatria (<a href="https://www.sbp.com.br/quando-e-como-iniciar-o-desmame/" target="_blank" rel="noopener">Quando e como iniciar o desmame</a>); Ministério da Saúde (Guia Alimentar para Crianças Brasileiras Menores de 2 Anos); OMS.</p>
+      <p>© 2026 Desmame Carinhoso · <a href="https://www.instagram.com/desmamecarinhoso/" target="_blank" rel="noopener">@desmamecarinhoso</a></p>
+    </div>
+  </footer>
+  <div class="sticky" id="sticky"><div class="wrap" style="padding:0 0"><div class="p">R$ 27,90</div><a class="btn" href="#comprar">Quero o guia</a></div></div>
+</div>
+
+<script>
+/* ===== CONFIGURAÇÃO: troque pelo link do checkout da Lastlink ===== */
+const CHECKOUT_URL = "https://lastlink.com/p/SEU-PRODUTO/checkout";
+
+const Q = [
+  {id:"idade", t:"Quantos anos tem seu filho?", o:["Menos de 1 ano","De 1 ano a 1 ano e meio","De 1 ano e meio a 2 anos","De 2 a 3 anos","Mais de 3 anos"]},
+  {id:"mamadas", t:"Quantas vezes ele mama por dia, contando a noite?", h:"Uma estimativa já basta.", o:["1 ou 2 vezes","3 ou 4 vezes","5 ou 6 vezes","Mais de 6 vezes"]},
+  {id:"dormir", t:"Ele mama para dormir?", o:["Sim, quase sempre","Às vezes","Não"]},
+  {id:"noite", t:"Ele acorda de madrugada para mamar?", o:["Sim, várias vezes","Sim, uma vez","Não acorda para mamar"]},
+  {id:"peso", t:"O que mais pesa para você hoje?", o:["As noites sem dormir","O choro quando eu não dou o peito","A volta ao trabalho","Não sei por onde começar"]},
+  {id:"sinais", t:"Quais destes sinais você já percebe?", h:"Marque todos que se aplicam.", multi:true, o:["Pede menos o peito","Come bem vários tipos de comida","Se acalma com colo, abraço ou um paninho","Às vezes dorme sem mamar","Aceita não mamar em alguns lugares ou horários","Nenhum ainda"]}
+];
+let i=0; const A={};
+
+function track(ev,data){ try{ window.dataLayer=window.dataLayer||[]; dataLayer.push(Object.assign({event:ev},data||{})); if(window.fbq) fbq('trackCustom',ev,data||{}); }catch(e){} }
+
+function startQuiz(){ document.getElementById('start').style.display='none'; document.getElementById('quiz').style.display='block'; window.scrollTo(0,0); render(); track('quiz_start'); }
+
+function render(){
+  const q=Q[i]; const box=document.getElementById('qBox');
+  document.getElementById('stepLbl').textContent=(i+1)+' de '+Q.length;
+  document.getElementById('barFill').style.width=((i)/Q.length*100)+'%';
+  const sel=A[q.id];
+  box.innerHTML=`<div class="q fade"><h2>${q.t}</h2>${q.h?`<p class="hint">${q.h}</p>`:'<p class="hint"></p>'}
+  <div class="opts">${q.o.map((o,k)=>`<button class="opt ${q.multi?'multi':''} ${q.multi?(sel&&sel.includes(k)?'sel':''):(sel===k?'sel':'')}" onclick="pick(${k})"><span class="dot"></span>${o}</button>`).join('')}</div>
+  <div class="nav">${i>0?'<button class="back" onclick="prev()">← Voltar</button>':''}
+  ${q.multi?`<button class="btn next" id="nx" onclick="next()" ${sel&&sel.length?'':'disabled'}>Ver meu resultado</button>`:''}</div></div>`;
+}
+function pick(k){
+  const q=Q[i];
+  if(q.multi){
+    let s=A[q.id]||[]; const none=q.o.length-1;
+    if(k===none){ s=s.includes(none)?[]:[none]; }
+    else { s=s.filter(x=>x!==none); s=s.includes(k)?s.filter(x=>x!==k):s.concat(k); }
+    A[q.id]=s; render();
+  } else { A[q.id]=k; render(); setTimeout(next,220); }
+}
+function prev(){ if(i>0){i--;render();} }
+function next(){ if(i<Q.length-1){ i++; render(); window.scrollTo(0,0); } else finish(); }
+
+function finish(){
+  document.getElementById('barFill').style.width='100%';
+  document.getElementById('quiz').style.display='none';
+  document.getElementById('loading').style.display='block';
+  window.scrollTo(0,0);
+  setTimeout(showResult,1400);
+}
+
+function showResult(){
+  const idade=A.idade, m=A.mamadas, dormir=A.dormir, noite=A.noite, peso=A.peso;
+  const sinais=(A.sinais||[]).filter(x=>x!==5);
+  let n = sinais.length + (idade>=1?1:0);   // até 6 sinais
+  let title, intro, steps;
+
+  if(peso===2){
+    title='Seu ponto de partida: <em>o desmame parcial</em>';
+    intro='Você não precisa parar de vez para voltar ao trabalho. Muitas mães mantêm as mamadas da manhã e da noite e tiram só as do horário de trabalho.';
+    steps=['Liste as mamadas que acontecem no seu horário de trabalho.','Comece tirando a mamada mais fácil desse horário, uma de cada vez.','Peça para quem fica com a criança oferecer comida, água e colo nesses momentos.'];
+  } else if(noite===0 || peso===0){
+    title='Seu ponto de partida: <em>as noites</em>';
+    intro='O cansaço da madrugada é o que mais pesa agora. Dá para começar pelas mamadas da noite antes de parar de vez.';
+    steps=['Capriche nas refeições do dia e num jantar de verdade.','Crie uma rotina de dormir que não termine no peito: banho, pijama, história, música.','Use o “combinado do sol”: o peito só aparece quando tem sol.'];
+  } else if(peso===1){
+    title='Seu ponto de partida: <em>acolher o choro</em>';
+    intro='O choro não é sinal de que você está errando. Você pode acolher o pedido sem dar o peito, e isso se aprende.';
+    steps=['Descubra o que ele quer de verdade quando pede o peito: fome, sono, tédio ou carinho.','Tenha frases prontas e curtas para os momentos difíceis.','Fique perto, diga o que ele está sentindo e ofereça outra coisa.'];
+  } else {
+    title='Seu ponto de partida: <em>as mamadas do dia</em>';
+    intro='O caminho mais tranquilo costuma começar pelas mamadas mais fáceis, as de tédio e de costume durante o dia.';
+    steps=['Anote por 3 dias cada mamada: a hora, o lugar e o motivo.','Escolha a mamada mais fácil para sair primeiro.','Pare de oferecer, mas não negue. Distraia com uma brincadeira.'];
+  }
+  if(dormir===0 && peso!==0 && noite!==0) steps.push('Separe mamar de dormir: amamente antes da história, com a luz acesa.');
+
+  const times=['de 1 a 4 semanas','de 3 a 8 semanas','de 5 a 12 semanas','mais de 2 meses'];
+  document.getElementById('rTitle').innerHTML=title;
+  document.getElementById('rIntro').textContent=intro;
+  document.getElementById('rSignsBig').textContent=n+' de 6';
+  document.getElementById('rMeter').innerHTML=Array.from({length:6},(_,k)=>`<i class="${k<n?'on':''}"></i>`).join('');
+  document.getElementById('rSignsTxt').textContent = n>=4 ? 'Quanto mais sinais, mais tranquilo o desmame tende a ser. Seu filho já dá vários.' : (n>=2 ? 'Alguns sinais já aparecem. O processo pode pedir um pouco mais de tempo e paciência.' : 'Poucos sinais por enquanto. Você ainda pode parar, só vai precisar de mais tempo e paciência.');
+  document.getElementById('rTime').textContent=times[m];
+  document.getElementById('rSteps').innerHTML=steps.map(s=>`<li>${s}</li>`).join('');
+  const note=document.getElementById('rNote');
+  if(idade===0){ note.style.display='block'; note.innerHTML='Seu filho tem menos de 1 ano. Se você decidiu ou precisa parar, essa decisão é sua e merece respeito. Converse com o pediatra para receber orientação sobre a alimentação dele.'; }
+
+  document.getElementById('loading').style.display='none';
+  document.getElementById('result').style.display='block';
+  window.scrollTo(0,0);
+  track('quiz_complete',{ponto:title.replace(/<[^>]+>/g,''),sinais:n});
+  initSticky();
+}
+
+function showOfferOnly(){
+  document.getElementById('start').style.display='none';
+  document.querySelector('.res-head').style.display='none';
+  document.getElementById('result').style.display='block';
+  initSticky(); track('skip_to_offer');
+}
+function initSticky(){
+  const st=document.getElementById('sticky'), buy=document.getElementById('comprar');
+  const io=new IntersectionObserver(es=>{ es.forEach(e=>{ st.classList.toggle('show', !e.isIntersecting && window.scrollY>400); }); },{threshold:.1});
+  io.observe(buy);
+  window.addEventListener('scroll',()=>{ const r=buy.getBoundingClientRect(); const vis=r.top<innerHeight&&r.bottom>0; st.classList.toggle('show', !vis && window.scrollY>400); },{passive:true});
+}
+function goCheckout(e){
+  e.preventDefault(); track('checkout_click');
+  const p=new URLSearchParams(location.search); const u=new URL(CHECKOUT_URL);
+  ['utm_source','utm_medium','utm_campaign','utm_content'].forEach(k=>{ if(p.get(k)) u.searchParams.set(k,p.get(k)); });
+  location.href=u.toString();
+}
+</script>
+</body>
+</html>
